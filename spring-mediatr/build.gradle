@@ -10,12 +10,14 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
+    jcenter()
 	mavenCentral()
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'io.jkratz.springmediatr:spring-mediatr:1.1-RELEASE'
 }
 
 test {

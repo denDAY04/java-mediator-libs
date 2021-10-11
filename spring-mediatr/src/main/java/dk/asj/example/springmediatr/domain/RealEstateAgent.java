@@ -6,10 +6,12 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import dk.asj.example.springmediatr.event.NewRealEstateEvent;
+import io.jkratz.mediator.core.EventHandler;
 import lombok.Getter;
 
 @Getter
-public class RealEstateAgent implements Agent {
+public class RealEstateAgent implements Agent, EventHandler<NewRealEstateEvent>{
 
   private static final Logger logger = LoggerFactory.getLogger(RealEstateAgent.class);
 
@@ -30,5 +32,10 @@ public class RealEstateAgent implements Agent {
   public boolean expendedOpportunity(RealEstate opportunity) {
     logger.info("Agent {} removing expended opportunity {}", name, opportunity.getName());
     return opportunities.remove(opportunity);
+  }
+
+  @Override
+  public void handle(NewRealEstateEvent event) {
+    newOpportunity(event.getRealEstate());
   }
 }
